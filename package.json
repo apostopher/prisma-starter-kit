@@ -1,0 +1,15 @@
+{
+  "name": "prisma-starter-kit",
+  "version": "1.0.0",
+  "description": "A starter kit to setup backend using prisma, postgreSQL, kubernetes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "prisma",
+    "starter-kit"
+  ],
+  "author": "Rahul Devaskar <apostopher@gmail.com> (http://apostopher.com/)",
+  "license": "MIT"
+}
