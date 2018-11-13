@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "A starter kit to setup backend using prisma, postgreSQL, kubernetes",
   "main": "index.js",
+  "config": {
+    "ENV_TEST": "env-cmd env/.env.test",
+    "ENV_LOCAL": "env-cmd env/.env.local",
+    "ENV_PROD": "env-cmd env/.env.production"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,11 +27,12 @@
     "@babel/preset-env": "7.1.5",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
+    "babel-plugin-module-resolver": "3.1.1",
+    "env-cmd": "8.0.2",
     "eslint": "5.9.0",
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-prettier": "3.0.0",
     "jest": "23.6.0",
-    "lerna": "3.4.3",
     "prettier": "1.15.2"
   },
   "jest": {
@@ -35,6 +41,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "7.1.5"
+    "@babel/runtime": "7.1.5",
+    "graphql-yoga": "1.16.7",
+    "prisma-binding": "2.1.6"
   }
 }
