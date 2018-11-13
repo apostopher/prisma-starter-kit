@@ -1,7 +1,7 @@
 import { GraphQLServer } from 'graphql-yoga'
 import { Prisma } from 'prisma-binding'
 
-import { PRISMA_ENDPOINT, PRISMA_MANAGEMENT_API_SECRET } from 'src/env/config'
+import { PRISMA_ENDPOINT, PRISMA_MANAGEMENT_API_SECRET } from 'src/config'
 
 import resolvers from 'src/resolvers'
 
