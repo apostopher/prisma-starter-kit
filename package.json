@@ -4,12 +4,16 @@
   "description": "A starter kit to setup backend using prisma, postgreSQL, kubernetes",
   "main": "index.js",
   "config": {
-    "ENV_TEST": "env-cmd env/.env.test",
-    "ENV_LOCAL": "env-cmd env/.env.local",
-    "ENV_PROD": "env-cmd env/.env.production"
+    "ENV_TEST": "env-cmd src/env/.env.test",
+    "ENV_LOCAL": "env-cmd src/env/.env.local",
+    "ENV_PROD": "env-cmd src/env/.env.production"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "$npm_package_config_ENV_LOCAL babel-node src/index.js",
+    "up": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml up -d",
+    "down": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml down",
+    "play": "$npm_package_config_ENV_LOCAL prisma playground"
   },
   "keywords": [
     "prisma",
