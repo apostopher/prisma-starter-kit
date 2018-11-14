@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "$npm_package_config_ENV_LOCAL helm install -f setup.yaml --name prisma-starter-kit stable/prisma",
     "start": "$npm_package_config_ENV_LOCAL babel-node src/index.js",
     "up": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml up -d",
     "down": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml down",

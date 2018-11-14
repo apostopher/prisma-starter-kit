@@ -1,0 +1,35 @@
+--- # ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Prisma:
+serviceAccount:
+  create: true
+  name: 'prisma'
+
+image:
+  repository: prismagraphql/prisma
+  tag: 1.15-heroku
+
+database:
+  connector: postgres
+  user: prisma
+  password: 'prisma'
+  migrations: true
+
+auth:
+  enabled: true
+  secret: 'some-secret'
+
+# ------------------------------------------------------------------------------
+# PostgreSQL:
+# ------------------------------------------------------------------------------
+
+postgresql:
+  enabled: true
+  imageTag: '10'
+
+  persistence:
+    enabled: true
+
+  postgresUser: prisma
+  postgresPassword: 'prisma'
