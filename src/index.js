@@ -1,14 +1,14 @@
 import { GraphQLServer } from 'graphql-yoga'
 import { Prisma } from 'prisma-binding'
 
-import { PRISMA_ENDPOINT, PRISMA_MANAGEMENT_API_SECRET } from 'src/config'
+import { PRISMA_ENDPOINT, K8S_PRISMA_MANAGEMENT_API_SECRET } from 'src/config'
 
 import resolvers from 'src/resolvers'
 
 const prisma = new Prisma({
   typeDefs: `${__dirname}/database/prisma.graphql`,
   endpoint: PRISMA_ENDPOINT,
-  secret: PRISMA_MANAGEMENT_API_SECRET,
+  secret: K8S_PRISMA_MANAGEMENT_API_SECRET,
 })
 
 const server = new GraphQLServer({

@@ -10,12 +10,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "$npm_package_config_ENV_LOCAL helm install -f setup.yaml --name prisma-starter-kit stable/prisma",
+    "setup": "$npm_package_config_ENV_LOCAL helm install -f values.yaml --name prisma-starter-kit stable/prisma",
     "start": "$npm_package_config_ENV_LOCAL babel-node src/index.js",
-    "up": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml up -d",
-    "down": "$npm_package_config_ENV_LOCAL docker-compose -f src/database/docker-compose.yml down",
     "play": "$npm_package_config_ENV_LOCAL prisma playground",
-    "env:sample": "sed 's/=.*/=/' env/.env.local > env/.env.sample"
+    "env:sample": "sed 's/=.*/=/' env/.env.local > env/.env.sample",
+    "env:test": "$npm_package_config_ENV_LOCAL echo $PRISMA_ENDPOINT",
+    "babel-node": "$npm_package_config_ENV_LOCAL babel-node"
   },
   "keywords": [
     "prisma",
@@ -48,7 +48,10 @@
   },
   "dependencies": {
     "@babel/runtime": "7.1.5",
+    "@kubernetes/client-node": "0.7.1",
+    "bluebird": "3.5.3",
     "graphql-yoga": "1.16.7",
+    "lodash": "4.17.11",
     "prisma-binding": "2.1.6"
   }
 }
