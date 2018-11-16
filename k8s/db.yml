@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: database
+  namespace: prisma
+  labels:
+    stage: production
+    name: database
+    app: postgres
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        stage: production
+        name: database
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: 'postgres:10.6'
+          resources:
+            limits:
+              cpu: 2
+              memory: "128Mi"
+            requests:
+              cpu: "250m"
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: vault
+                  key: K8S_POSTGRES_PASSWORD
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: vault
+                  key: K8S_POSTGRES_USER
+          ports:
+            - name: postgres-5432
+              containerPort: 5432
+          volumeMounts:
+            - name: database-disk
+              readOnly: false
+              mountPath: /var/lib/postgresql
+      volumes:
+        - name: database-disk
+          persistentVolumeClaim:
+            claimName: database-disk

@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prisma
+  namespace: prisma
+  labels:
+    stage: production
+    name: prisma
+    app: prisma
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: prisma
+  template:
+    metadata:
+      labels:
+        stage: production
+        name: prisma
+        app: prisma
+    spec:
+      containers:
+        - name: prisma
+          image: 'prismagraphql/prisma:1.20'
+          ports:
+            - name: prisma-4466
+              containerPort: 4466
+          resources:
+            limits:
+              cpu: 2
+              memory: "128Mi"
+            requests:
+              cpu: "250m"
+          env:
+            - name: PRISMA_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: prisma-configmap
+                  key: PRISMA_CONFIG
+                
